@@ -52,19 +52,19 @@ public class Block extends Rectangle{
 	
 	public void physic() { // kulelerin moblara vurması ve ölene kadar takip etmesi 
 
-		if (shotMob != 0 && towerSquare.intersects(Screen.mobs[shotMob])   ) { // mobun ölmesini bekliyor
+		if (shotMob != 0 && towerSquare.intersects(Screen.enemies[shotMob])   ) { // mobun ölmesini bekliyor
 
 			shotingMob1 = true;
 			
 
 		}
-		else if(shotMob != 0 && towerSquare.intersects(Screen.mobss[shotMob])) { // mobun ölmesini bekliyor
+		else if(shotMob != 0 && towerSquare.intersects(Screen.enemies[shotMob])) { // mobun ölmesini bekliyor
 
 			shotingMob2 = true;
 			
 
 		}
-		else if(shotMob != 0 && towerSquare.intersects(Screen.mobsss[shotMob])) {
+		else if(shotMob != 0 && towerSquare.intersects(Screen.enemies[shotMob])) {
 			
 			shotingMob3 = true;
 		}
@@ -90,9 +90,9 @@ public class Block extends Rectangle{
 		if (!shotingMob1) { // burası towerların kendi menzillerine girene kadar beklemesini sağlıyor 
 
 			if (airID == Value.airTowerLaser ||airID == Value.airTowerLaser2||airID == Value.airTowerLaser3 )  { // başka tower için ya da ile ekle
-				for (int i = 0; i < Screen.mobs.length; i++) {
-					if (Screen.mobs[i].inGame) {
-						if (towerSquare.intersects(Screen.mobs[i])) { //çerçevenin içerisinde vurmasını sağlıyor
+				for (int i = 0; i < Screen.enemies.length; i++) {
+					if (Screen.enemies[i].inGame) {
+						if (towerSquare.intersects(Screen.enemies[i])) { //çerçevenin içerisinde vurmasını sağlıyor
 
 							shotingMob1 = true; // 
 							shotMob = i;
@@ -126,13 +126,13 @@ public class Block extends Rectangle{
 			if (loseFrame>=loseTime) {// her kule için ayrı değerimiz var
                  
 				if(airID == Value.airTowerLaser) {
-					Screen.mobs[shotMob].loseHealth(2); // mobun ne kadar canı gidiyor
+					Screen.enemies[shotMob].loseHealth(2); // mobun ne kadar canı gidiyor
 				}
 				else if(airID == Value.airTowerLaser2) {
-					Screen.mobs[shotMob].loseHealth(4); // mobun ne kadar canı gidiyor
+					Screen.enemies[shotMob].loseHealth(4); // mobun ne kadar canı gidiyor
 				}
 				else if(airID == Value.airTowerLaser3) {
-					Screen.mobs[shotMob].loseHealth(10); // mobun ne kadar canı gidiyor
+					Screen.enemies[shotMob].loseHealth(10); // mobun ne kadar canı gidiyor
 				}
 				
 				
@@ -142,7 +142,7 @@ public class Block extends Rectangle{
 				loseFrame += 1;
 			}
 
-			if (Screen.mobs[shotMob].isDead()) {
+			if (Screen.enemies[shotMob].isDead()) {
 
 				shotingMob1 = false;
 				shotMob = 0;
@@ -160,9 +160,9 @@ public class Block extends Rectangle{
 		if (!shotingMob2) {
 
 			if (airID == Value.airTowerLaser ||airID == Value.airTowerLaser2||airID == Value.airTowerLaser3 )  { // başka tower için ya da ile ekle
-				for (int i = 0; i < Screen.mobss.length; i++) {
-					if (Screen.mobss[i].inGame) {
-						if (towerSquare.intersects(Screen.mobss[i]) ) {
+				for (int i = 0; i < Screen.enemies.length; i++) {
+					if (Screen.enemies[i].inGame) {
+						if (towerSquare.intersects(Screen.enemies[i]) ) {
 
 							shotingMob2 = true;
 							shotMob = i;
@@ -186,13 +186,13 @@ public class Block extends Rectangle{
 
 				  
 				if(airID == Value.airTowerLaser) {
-					Screen.mobss[shotMob].loseHealth(2); // mobun ne kadar canı gidiyor
+					Screen.enemies[shotMob].loseHealth(2); // mobun ne kadar canı gidiyor
 				}
 				else if(airID == Value.airTowerLaser2) {
-					Screen.mobss[shotMob].loseHealth(4); // mobun ne kadar canı gidiyor
+					Screen.enemies[shotMob].loseHealth(4); // mobun ne kadar canı gidiyor
 				}
 				else if(airID == Value.airTowerLaser3) {
-					Screen.mobss[shotMob].loseHealth(10); // mobun ne kadar canı gidiyor
+					Screen.enemies[shotMob].loseHealth(10); // mobun ne kadar canı gidiyor
 				}
 				
 				
@@ -202,7 +202,7 @@ public class Block extends Rectangle{
 				loseFrame += 1;
 			}
 
-			if (Screen.mobss[shotMob].isDead()) {
+			if (Screen.enemies[shotMob].isDead()) {
 
 				shotingMob2 = false;
 				shotMob = 0;
@@ -220,9 +220,9 @@ public class Block extends Rectangle{
 		if (!shotingMob3) {
 
 			if (airID == Value.airTowerLaser ||airID == Value.airTowerLaser2||airID == Value.airTowerLaser3 )  { // başka tower için ya da ile ekle
-				for (int i = 0; i < Screen.mobsss.length; i++) {
-					if (Screen.mobsss[i].inGame) {
-						if (towerSquare.intersects(Screen.mobsss[i])) {
+				for (int i = 0; i < Screen.enemies.length; i++) {
+					if (Screen.enemies[i].inGame) {
+						if (towerSquare.intersects(Screen.enemies[i])) {
 
 							shotingMob3 = true;
 							shotMob = i;
@@ -248,13 +248,13 @@ public class Block extends Rectangle{
 
 				  
 				if(airID == Value.airTowerLaser) {
-					Screen.mobsss[shotMob].loseHealth(2); // mobun ne kadar canı gidiyor
+					Screen.enemies[shotMob].loseHealth(2); // mobun ne kadar canı gidiyor
 				}
 				else if(airID == Value.airTowerLaser2) {
-					Screen.mobsss[shotMob].loseHealth(4); // mobun ne kadar canı gidiyor
+					Screen.enemies[shotMob].loseHealth(4); // mobun ne kadar canı gidiyor
 				}
 				else if(airID == Value.airTowerLaser3) {
-					Screen.mobsss[shotMob].loseHealth(10); // mobun ne kadar canı gidiyor
+					Screen.enemies[shotMob].loseHealth(10); // mobun ne kadar canı gidiyor
 				}
 				
 				
@@ -264,7 +264,7 @@ public class Block extends Rectangle{
 				loseFrame += 1;
 			}
 
-			if (Screen.mobsss[shotMob].isDead()) {
+			if (Screen.enemies[shotMob].isDead()) {
 
 				shotingMob3 = false;
 				shotMob = 0;
@@ -342,7 +342,7 @@ public class Block extends Rectangle{
 
 
                    g.setColor((new Color(255,255,0)));  //lazerin rengi
-                   g.drawLine(x + (width/2), y + (height/2), Screen.mobs[shotMob].x + (Screen.mobs[shotMob].width/2), Screen.mobs[shotMob].y+ (Screen.mobs[shotMob].height/2));
+                   g.drawLine(x + (width/2), y + (height/2), Screen.enemies[shotMob].x + (Screen.enemies[shotMob].width/2), Screen.enemies[shotMob].y+ (Screen.enemies[shotMob].height/2));
 
 
                }else if(shotingMob1&&airID == Value.airTowerLaser2) {    // kulenin lazeri
@@ -350,14 +350,14 @@ public class Block extends Rectangle{
 
 
                    g.setColor((new Color(0,153,0)));  //lazerin rengi
-                   g.drawLine(x + (width/2), y + (height/2), Screen.mobs[shotMob].x + (Screen.mobs[shotMob].width/2), Screen.mobs[shotMob].y+ (Screen.mobs[shotMob].height/2));
+                   g.drawLine(x + (width/2), y + (height/2), Screen.enemies[shotMob].x + (Screen.enemies[shotMob].width/2), Screen.enemies[shotMob].y+ (Screen.enemies[shotMob].height/2));
 
                }else if(shotingMob1&&airID == Value.airTowerLaser3) {    // kulenin lazeri
 
 
 
                    g.setColor((new Color(51,153,255)));  //lazerin rengi
-                   g.drawLine(x + (width/2), y + (height/2), Screen.mobs[shotMob].x + (Screen.mobs[shotMob].width/2), Screen.mobs[shotMob].y+ (Screen.mobs[shotMob].height/2));
+                   g.drawLine(x + (width/2), y + (height/2), Screen.enemies[shotMob].x + (Screen.enemies[shotMob].width/2), Screen.enemies[shotMob].y+ (Screen.enemies[shotMob].height/2));
 
                }
 		       
@@ -367,7 +367,7 @@ public class Block extends Rectangle{
 
 
                    g.setColor((new Color(255,255,0)));  //lazerin rengi
-                   g.drawLine(x + (width/2), y + (height/2), Screen.mobss[shotMob].x + (Screen.mobss[shotMob].width/2), Screen.mobss[shotMob].y+ (Screen.mobss[shotMob].height/2));
+                   g.drawLine(x + (width/2), y + (height/2), Screen.enemies[shotMob].x + (Screen.enemies[shotMob].width/2), Screen.enemies[shotMob].y+ (Screen.enemies[shotMob].height/2));
 
 
                }else if(shotingMob2&&airID == Value.airTowerLaser2) {    // kulenin lazeri
@@ -375,14 +375,14 @@ public class Block extends Rectangle{
 
 
                    g.setColor((new Color(0,153,0)));  //lazerin rengi
-                   g.drawLine(x + (width/2), y + (height/2), Screen.mobss[shotMob].x + (Screen.mobss[shotMob].width/2), Screen.mobss[shotMob].y+ (Screen.mobss[shotMob].height/2));
+                   g.drawLine(x + (width/2), y + (height/2), Screen.enemies[shotMob].x + (Screen.enemies[shotMob].width/2), Screen.enemies[shotMob].y+ (Screen.enemies[shotMob].height/2));
 
                }else if(shotingMob2&&airID == Value.airTowerLaser3) {    // kulenin lazeri
 
 
 
                    g.setColor((new Color(51,153,255)));  //lazerin rengi
-                   g.drawLine(x + (width/2), y + (height/2), Screen.mobss[shotMob].x + (Screen.mobss[shotMob].width/2), Screen.mobss[shotMob].y+ (Screen.mobss[shotMob].height/2));
+                   g.drawLine(x + (width/2), y + (height/2), Screen.enemies[shotMob].x + (Screen.enemies[shotMob].width/2), Screen.enemies[shotMob].y+ (Screen.enemies[shotMob].height/2));
 
                }
 		       
@@ -393,7 +393,7 @@ public class Block extends Rectangle{
 
 
                    g.setColor((new Color(255,255,0)));  //lazerin rengi
-                   g.drawLine(x + (width/2), y + (height/2), Screen.mobsss[shotMob].x + (Screen.mobsss[shotMob].width/2), Screen.mobsss[shotMob].y+ (Screen.mobsss[shotMob].height/2));
+                   g.drawLine(x + (width/2), y + (height/2), Screen.enemies[shotMob].x + (Screen.enemies[shotMob].width/2), Screen.enemies[shotMob].y+ (Screen.enemies[shotMob].height/2));
 
 
                }else if(shotingMob3&&airID == Value.airTowerLaser2) {    // kulenin lazeri
@@ -401,14 +401,14 @@ public class Block extends Rectangle{
 
 
                    g.setColor((new Color(0,153,0)));  //lazerin rengi
-                   g.drawLine(x + (width/2), y + (height/2), Screen.mobsss[shotMob].x + (Screen.mobsss[shotMob].width/2), Screen.mobsss[shotMob].y+ (Screen.mobsss[shotMob].height/2));
+                   g.drawLine(x + (width/2), y + (height/2), Screen.enemies[shotMob].x + (Screen.enemies[shotMob].width/2), Screen.enemies[shotMob].y+ (Screen.enemies[shotMob].height/2));
 
                }else if(shotingMob3&&airID == Value.airTowerLaser3) {    // kulenin lazeri
 
 
 
                    g.setColor((new Color(51,153,255)));  //lazerin rengi
-                   g.drawLine(x + (width/2), y + (height/2), Screen.mobsss[shotMob].x + (Screen.mobsss[shotMob].width/2), Screen.mobsss[shotMob].y+ (Screen.mobsss[shotMob].height/2));
+                   g.drawLine(x + (width/2), y + (height/2), Screen.enemies[shotMob].x + (Screen.enemies[shotMob].width/2), Screen.enemies[shotMob].y+ (Screen.enemies[shotMob].height/2));
 
                }
 		       

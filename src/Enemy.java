@@ -1,5 +1,4 @@
-import java.awt.Rectangle;
-
+import java.awt.*;
 public abstract class Enemy extends Rectangle {
 
 public int xC, yC;
@@ -166,5 +165,5 @@ public void physic() {
         walkFrame += 1;
     }
 }
-
+public abstract void draw(Graphics g);
 }
