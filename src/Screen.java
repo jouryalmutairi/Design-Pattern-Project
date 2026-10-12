@@ -69,17 +69,24 @@ private GameLevel currentLevel;
 
         currentLevel = new GameLevelBuilder()
         .setLevelNumber(level)
-        .setEnemyType(level == 1 || level == 2 ? 1 : level == 3 ? 2 : 3)
-        .setSpawnTime(level == 1 || level == 2 ? 1600 : level == 3 ? 1400 : 1200)
+.setEnemyType(
+        level == 1 ? 1 :
+        level == 2 ? 2 :
+        3
+)        .setSpawnTime(level == 1 || level == 2 ? 1600 : level == 3 ? 1400 : 1200)
         .setMapPath("save/map" + level)
         .setHealth(10)
         .setCoins(10)
-        .setKillsToWin(killsToWin)
-        .build();
+.setKillsToWin(
+        level == 1 ? 10 :
+        level == 2 ? 20 :
+        30
+)        .build();
 
 coinage = currentLevel.getCoins();
 health = currentLevel.getHealth();
 spawnTime = currentLevel.getSpawnTime();
+killsToWin = currentLevel.getKillsToWin();
         // Load ground tiles
         for (int i = 0; i < tileset_ground.length; i++) {
 
