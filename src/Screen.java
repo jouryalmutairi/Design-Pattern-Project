@@ -73,8 +73,11 @@ private GameLevel currentLevel;
         level == 1 ? 1 :
         level == 2 ? 2 :
         3
-)        .setSpawnTime(level == 1 || level == 2 ? 1600 : level == 3 ? 1400 : 1200)
-        .setMapPath("save/map" + level)
+)        .setSpawnTime(
+        level == 1 ? 1600 :
+        level == 2 ? 1400 :
+        1200
+)  .setMapPath("save/map" + level)
         .setHealth(10)
         .setCoins(10)
 .setKillsToWin(
@@ -150,30 +153,19 @@ killsToWin = currentLevel.getKillsToWin();
         // Load level map
        save.loadSave(new File(currentLevel.getMapPath()));
 
-        /*
-         * Factory Method
-         * Screen chooses the appropriate factory,
-         * while the factory creates the concrete enemy.
-         */
-        EnemyFactory factory;
+       /*
+ * Simple Factory
+ * EnemyFactory creates the appropriate enemy
+ * based on the enemy type.
+ */
+        
 
-       if (currentLevel.getEnemyType() == 1) {
-    factory = new MobFactory();
+       EnemyFactory factory = new EnemyFactory();
+
+for (int i = 0; i < enemies.length; i++) {
+    enemies[i] = factory.createEnemy(currentLevel.getEnemyType());
 }
-else if (currentLevel.getEnemyType() == 2) {
-    factory = new Mob2Factory();
 }
-else {
-    factory = new Mob3Factory();
-}
-
-        // Create enemies through the factory
-        for (int i = 0; i < enemies.length; i++) {
-
-            enemies[i] = factory.createEnemy();
-        }
-    }
-
     @Override
     public void paintComponent(Graphics g) {
 
