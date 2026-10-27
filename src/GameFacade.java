@@ -72,15 +72,9 @@ public class GameFacade {
         return room;
     }
 
-    public Save getSave() {
-        return save;
-    }
-
     public Store getStore() {
         return store;
     }
 
-    public GameLevel getCurrentLevel() {
-        return currentLevel;
-    }
 }
+
