@@ -39,7 +39,10 @@ public class Screen extends JPanel implements Runnable {
 
     // All enemy types are now stored in one array
     public static Enemy[] enemies = new Enemy[100];
-private GameLevel currentLevel;
+
+    // Facade Pattern
+    private GameFacade gameFacade = new GameFacade();
+
     public int spawnTime = 1600;
     public int spawnFrame = 0;
 
@@ -63,33 +66,10 @@ private GameLevel currentLevel;
 
     public void define() {
 
-        room = new Room();
-        save = new Save();
-        store = new Store();
+        // Facade Pattern - Initialize game components and level
+        gameFacade.setupGame(level);
+        spawnTime = gameFacade.getSpawnTime();
 
-        currentLevel = new GameLevelBuilder()
-        .setLevelNumber(level)
-.setEnemyType(
-        level == 1 ? 1 :
-        level == 2 ? 2 :
-        3
-)        .setSpawnTime(
-        level == 1 ? 1600 :
-        level == 2 ? 1400 :
-        1200
-)  .setMapPath("save/map" + level)
-        .setHealth(10)
-        .setCoins(10)
-.setKillsToWin(
-        level == 1 ? 10 :
-        level == 2 ? 20 :
-        30
-)        .build();
-
-coinage = currentLevel.getCoins();
-health = currentLevel.getHealth();
-spawnTime = currentLevel.getSpawnTime();
-killsToWin = currentLevel.getKillsToWin();
         // Load ground tiles
         for (int i = 0; i < tileset_ground.length; i++) {
 
@@ -149,23 +129,8 @@ killsToWin = currentLevel.getKillsToWin();
 
         tileset_mobbb[0] =
                 new ImageIcon("res/mob3.png").getImage();
+    }
 
-        // Load level map
-       save.loadSave(new File(currentLevel.getMapPath()));
-
-       /*
- * Simple Factory
- * EnemyFactory creates the appropriate enemy
- * based on the enemy type.
- */
-        
-
-       EnemyFactory factory = new EnemyFactory();
-
-for (int i = 0; i < enemies.length; i++) {
-    enemies[i] = factory.createEnemy(currentLevel.getEnemyType());
-}
-}
     @Override
     public void paintComponent(Graphics g) {
 
